@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class InventoryManager {
+
+    HashMap<String,Integer> stock = new HashMap<>();
+    Queue<Integer> waitingList = new LinkedList<>();
+
+    public String purchaseItem(String productId,int userId){
+
+        if(stock.get(productId) > 0){
+
+            stock.put(productId, stock.get(productId)-1);
+            return "Purchase Success";
+
+        }else{
+
+            waitingList.add(userId);
+            return "Added to waiting list";
+        }
+    }
+
+    public static void main(String[] args){
+
+        InventoryManager manager = new InventoryManager();
+
+        manager.stock.put("IPHONE15",100);
+
+        System.out.println(manager.purchaseItem("IPHONE15",101));
+    }
+}
